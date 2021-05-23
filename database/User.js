@@ -80,7 +80,6 @@ class User extends Sequelize.Model {
 
   static associate(models) {
     this.hasMany(models.House, { foreignKey: 'userId' })
-
     this.hasMany(models.Like, { foreignKey: 'userId' })
   }
 }

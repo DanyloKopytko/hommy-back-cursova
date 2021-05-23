@@ -9,7 +9,7 @@ require('dotenv').config()
 
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
   host: process.env.POSTGRES_HOST,
-  port: 5432,
+  port: process.env.POSTGRES_PORT,
   dialect: 'postgres',
 })
 
@@ -32,5 +32,5 @@ for (const model of Object.keys(models)) {
   typeof models[model].associate === 'function' && models[model].associate(models)
 }
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: process.env.MIGRATE !== 'false' })
 module.exports = models
