@@ -19,4 +19,6 @@ server.use('/houses', routes.housesRouter)
 server.all('*', (req, res) => res.status(404).end('Invalid path'))
 
 io()
-server.listen(3000, () => console.log('3000'))
+
+const { PORT } = process.env
+server.listen(PORT, () => console.log(PORT))
